@@ -1,0 +1,65 @@
+import random
+
+def get_computer_choice():
+    choices = ["Snake", "Water", "Gun"]
+    return random.choice(choices)
+
+def get_winner(player, computer):
+    if player == computer:
+        return "It's a draw!"
+    elif (player == "Snake" and computer == "Water") or \
+         (player == "Water" and computer == "Gun") or \
+         (player == "Gun" and computer == "Snake"):
+        return "You win!"
+    else:
+        return "Computer wins!"
+
+def main():
+    print("Welcome to Snake, Water, Gun Game!")
+    print("Choices: Snake, Water, Gun")
+    player_choice = input("Enter your choice: ").capitalize()
+    if player_choice not in ["Snake", "Water", "Gun"]:
+        print("Invalid choice! Please choose Snake, Water, or Gun.")
+        return
+
+    computer_choice = get_computer_choice()
+    print(f"Computer chose: {computer_choice}")
+    result = get_winner(player_choice, computer_choice)
+    print(result)
+
+if __name__ == "__main__":
+    main()
+
+# uses a matrix (outcomes) to determine the result.
+
+import random
+
+def get_computer_choice():
+    choices = ["Snake", "Water", "Gun"]
+    return random.choice(choices)
+
+def get_winner(player, computer):
+    outcomes = [["Draw", "You win!", "Computer wins!"],
+                ["Computer wins!", "Draw", "You win!"],
+                ["You win!", "Computer wins!", "Draw"]]
+    choices = {"Snake": 0, "Water": 1, "Gun": 2}
+    player_index = choices[player]
+    computer_index = choices[computer]
+    return outcomes[player_index][computer_index]
+
+def main():
+    print("Welcome to Snake, Water, Gun Game!")
+    print("Choices: Snake, Water, Gun")
+    player_choice = input("Enter your choice: ").capitalize()
+    if player_choice not in ["Snake", "Water", "Gun"]:
+        print("Invalid choice! Please choose Snake, Water, or Gun.")
+        return
+
+    computer_choice = get_computer_choice()
+    print(f"Computer chose: {computer_choice}")
+    result = get_winner(player_choice, computer_choice)
+    print(result)
+
+if __name__ == "__main__":
+    main()
+
